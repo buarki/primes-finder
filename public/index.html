@@ -3,16 +3,31 @@
  <head>
    <meta charset="utf-8">
    <title>Sieve of Eratosthenes</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="https://cdn.tailwindcss.com"></script>
  </head>
- <body>
-  <div>
-    <h1>Sieve of Eratosthenes</h1>
-    <label for="numberInput">Inform the interval limit to seek for prime numbers:</label>
-    <input id="numberInput" type="number" min="1"></input>
-    <button onclick="findPrimesOnClick()">Find</button>
-    <p id="result"></p>
-    <ul id="primeList"></ul>
-  </div>
+ <body class="font-sans bg-gray-100">
+  <div class="min-h-screen flex flex-col p-3">
+    <header class="flex justify-between items-center bg-white shadow-lg p-4">
+      <a href="/" class="font-bold text-blue-500">Primes finder</a>
+      <ul class="flex">
+        <li>
+          <a href="https://github.com/buarki/primes-finder" target="_blank" title="Project on Github" class="font-bold text-blue-500 hover:text-white hover:bg-blue-500 p-2">Github</a>
+        </li>
+      </ul>
+    </header>
+    <div class="flex-grow mt-3">
+      <h1 class="font-bold text-3xl">Sieve of Eratosthenes</h1>
+      <label for="numberInput" class="mt-2">Inform the interval limit to seek for prime numbers:</label>
+      <input id="numberInput" type="number" min="1" class="bg-gray-300 rounded p-2 shadow-md">
+      <button title="Search the prime numbers on the given interval" class="bg-blue-500 hover:bg-blue-400 text-white font-bold p-2 mt-2" onclick="findPrimesOnClick()">Find</button>
+      <p id="result" class="mt-2"></p>
+      <ul id="primeList" class="list-disc list-inside mt-2"></ul>
+    </div>
+    <footer class="flex items-center justify-center bg-white p-4 mt-3">
+      <p title="Visit author's site.">Made with love by <a target='_blank' class='underline hover:bg-blue-400 p-1 hover:text-white' href='https://buarki.com'>buarki.com.</a></p>
+    </footer>
+   </div>
    <script src="/public/wasm_exec.js"></script>
    <script>
       const wasmFile = '/public/main.wasm';
