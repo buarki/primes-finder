@@ -2,31 +2,56 @@
 <html>
  <head>
    <meta charset="utf-8">
-   <title>Go + WebAssembly Example</title>
+   <title>Sieve of Eratosthenes</title>
  </head>
  <body>
   <div>
-    <h1>OI</h1>
-    <label for="numberInput">Input</label>
-    <input id="numberInput" type="number"></input>
-    <button onclick="findPrimesOnClick()">go</button>
+    <h1>Sieve of Eratosthenes</h1>
+    <label for="numberInput">Inform the interval limit to seek for prime numbers:</label>
+    <input id="numberInput" type="number" min="1"></input>
+    <button onclick="findPrimesOnClick()">Find</button>
     <p id="result"></p>
+    <ul id="primeList"></ul>
   </div>
    <script src="/public/wasm_exec.js"></script>
    <script>
       const wasmFile = '/public/main.wasm';
-      
+      const BASE_10 = 10;
+
       function findPrimesOnClick() {
-        console.log('clicked');
+        const limit = Number.parseInt(document.getElementById("numberInput").value, BASE_10);
+        if (limit < 0) {
+          alert("Only allowed numbers >= 1");
+          return;
+        }
+        if (Number.isNaN(limit)) {
+          alert("Type a valid number");
+          return;
+        }
         const go = new Go();
 
         WebAssembly.instantiateStreaming(fetch(wasmFile), go.importObject).then((result) => {
           go.run(result.instance);
-          const limit = Number.parseInt(document.getElementById("numberInput").value, 10);
-          const primes = findPrimes(limit);
-          console.log('Prime numbers up to', limit, ':', JSON.parse(JSON.stringify(primes)));
-          document.getElementById("result").innerHTML = `got ${JSON.stringify(primes)}`;
-          return;
+          const rawPrimeResults = findPrimes(limit);
+          const treatedPrimeNumbers = JSON.parse(JSON.stringify(rawPrimeResults));
+          if (treatedPrimeNumbers == null) {
+            alert("Ops, something went wrong :(");
+            return;
+          }
+          document.getElementById("result").innerHTML = `The prime numbers until ${limit} are:`;
+          renderPrimes(treatedPrimeNumbers);
+        });
+      }
+
+      // primes is supposed to be a list of numbers.
+      function renderPrimes(primes) {
+        const primeList = document.getElementById("primeList");
+        primeList.innerHTML = "";
+
+        primes.forEach((prime) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = prime;
+          primeList.appendChild(listItem);
         });
       }
    </script>
