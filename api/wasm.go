@@ -1,13 +1,12 @@
 package api
 
 import (
+	"fmt"
 	"net/http"
+	"time"
 )
 
-const (
-	wasmPath = "./public/main.wasm"
-)
-
-func Handler1(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, wasmPath)
+func Date(w http.ResponseWriter, r *http.Request) {
+	currentTime := time.Now().Format(time.RFC850)
+	fmt.Fprint(w, currentTime)
 }
