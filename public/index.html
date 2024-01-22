@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>Go + WebAssembly Example</title>
+ </head>
+ <body>
+  <div>
+    <h1>OI</h1>
+    <label for="numberInput">Input</label>
+    <input id="numberInput" type="number"></input>
+    <button onclick="findPrimes()">go</button>
+    <p id="result"></p>
+  </div>
+   <script src="/public/wasm_exec.js"></script>
+   <script>
+      function findPrimes() {
+        console.log('clicked');
+        const go = new Go();
+        const wasmFile = '/public/main.wasm';
+
+        WebAssembly.instantiateStreaming(fetch(wasmFile), go.importObject).then((result) => {
+          go.run(result.instance);
+          const limit = Number.parseInt(document.getElementById("numberInput").value, 10);
+          const primes = findPrimes(limit);
+          console.log('Prime numbers up to', limit, ':', JSON.parse(JSON.stringify(primes)));
+        });
+      }
+   </script>
+ </body>
+</html>
