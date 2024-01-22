@@ -2,15 +2,26 @@
 <html>
  <head>
    <meta charset="utf-8">
-   <title>Sieve of Eratosthenes</title>
+   <title>Primes Finder</title>
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="icon" type="image/x-icon" href="/public/og.webp">
-   <script src="https://cdn.tailwindcss.com"></script>
+
+  <meta property="og:title" content="Primes Finder">
+  <meta property="og:description" content="Sieve of Eratosthenes using Go and WebAssembly.">
+  <meta property="og:image" content="/public/og.webp">
+  <meta property="og:url" content="https://primes-finder.vercel.app/">
+  <meta property="og:type" content="website">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@buarki">
+  <meta name="twitter:image" content="/public/og.webp">
+
+  <script src="https://cdn.tailwindcss.com"></script>
  </head>
  <body class="font-sans bg-gray-100">
   <div class="min-h-screen flex flex-col p-3">
     <header class="flex justify-between items-center bg-white shadow-lg p-4">
-      <a href="/" class="font-bold text-blue-500">Primes finder</a>
+      <a href="/" class="font-bold text-blue-500">Primes Finder</a>
       <ul class="flex">
         <li>
           <a href="https://github.com/buarki/primes-finder" target="_blank" title="Project on Github" class="font-bold text-blue-500 hover:text-white hover:bg-blue-500 p-2">Github</a>
@@ -18,7 +29,7 @@
       </ul>
     </header>
     <div class="flex-grow mt-3">
-      <h1 class="font-bold text-3xl">Sieve of Eratosthenes</h1>
+      <h1 class="font-bold text-3xl">Primes Finder</h1>
       <label for="numberInput" class="mt-2">Inform the interval limit to seek for prime numbers:</label>
       <input id="numberInput" type="number" min="1" class="bg-gray-300 rounded p-2 shadow-md">
       <button title="Search the prime numbers on the given interval" class="bg-blue-500 hover:bg-blue-400 text-white font-bold p-2 mt-2" onclick="findPrimesOnClick()">Find</button>
