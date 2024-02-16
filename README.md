@@ -4,7 +4,7 @@
 
 This project was created to check the state of [WebAssembly](https://webassembly.org/) development tools now, in the beginning of 2024, specifically with Go programing language.
 
-So far, I was able to put this project to run by digging into the [provided documentation](https://github.com/golang/go/wiki/WebAssembly#getting-started), but it was not a straightforward process, especially in terms of passing complex objects from Go to Javascript level. I'll need to study more it :)
+So far, I was able to put this project to run by digging into the [provided documentation](https://github.com/golang/go/wiki/WebAssembly#getting-started), but it was not a straightforward process, especially in terms of passing complex objects from Go to Javascript level. I'll need to study it more :)
 
 ## Sieve of Eratosthenes
 
@@ -57,7 +57,7 @@ Everytime the button **Find** is pressed a function is called to collect the lim
 
 ### The Javascript part
 
-This one is relativelly simple, [it just an HTML file with inline Javascript](public/index.html) to receive the limit to be used to perform the Sieve of Eratosthenes and call the function **findPrimes** provided by Go.
+This one is relatively simple, [it just an HTML file with inline Javascript](public/index.html) to receive the limit to be used to perform the Sieve of Eratosthenes and call the function **findPrimes** provided by Go.
 
 ## Running Locally
 
