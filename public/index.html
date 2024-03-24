@@ -31,7 +31,7 @@
     <div class="flex-grow mt-3">
       <h1 class="font-bold text-3xl">Primes Finder</h1>
       <label for="numberInput" class="mt-2">Inform the interval limit to seek for prime numbers:</label>
-      <input id="numberInput" type="number" min="1" class="bg-gray-300 rounded p-2 shadow-md">
+      <input title="Type numbers >=1 and <= 200000" id="numberInput" type="number" min="1" max="200000" class="bg-gray-300 rounded p-2 shadow-md">
       <button title="Search the prime numbers on the given interval" class="bg-blue-500 hover:bg-blue-400 text-white font-bold p-2 mt-2" onclick="findPrimesOnClick()">Find</button>
       <p id="result" class="mt-2"></p>
       <ul id="primeList" class="list-disc list-inside mt-2"></ul>
@@ -44,12 +44,17 @@
    <script>
       const wasmFile = '/public/main.wasm';
       const BASE_10 = 10;
+      const MAX_ALLOWED_NUMBER = 200_000;
       const go = new Go();
 
       function findPrimesOnClick() {
         const limit = Number.parseInt(document.getElementById("numberInput").value, BASE_10);
         if (limit < 0) {
           alert("Only allowed numbers >= 1");
+          return;
+        }
+        if (limit > MAX_ALLOWED_NUMBER) {
+          alert("Only allowed numbers <= 200000");
           return;
         }
         if (Number.isNaN(limit)) {
